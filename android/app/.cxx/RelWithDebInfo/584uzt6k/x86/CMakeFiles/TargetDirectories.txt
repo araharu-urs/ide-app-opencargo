@@ -1,0 +1,2 @@
+/Users/urielrodriguezsandoval/Proyectos/Costumers/Idevart/Viny/open_cargo_app/android/app/.cxx/RelWithDebInfo/584uzt6k/x86/CMakeFiles/edit_cache.dir
+/Users/urielrodriguezsandoval/Proyectos/Costumers/Idevart/Viny/open_cargo_app/android/app/.cxx/RelWithDebInfo/584uzt6k/x86/CMakeFiles/rebuild_cache.dir
