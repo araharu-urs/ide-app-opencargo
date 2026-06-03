@@ -1,0 +1,2 @@
+/Users/urielrodriguezsandoval/Proyectos/Costumers/Idevart/google/open_cargo_app/android/app/.cxx/Debug/1nl324a5/x86_64/CMakeFiles/edit_cache.dir
+/Users/urielrodriguezsandoval/Proyectos/Costumers/Idevart/google/open_cargo_app/android/app/.cxx/Debug/1nl324a5/x86_64/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/urielrodriguezsandoval/development/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/urielrodriguezsandoval/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/urielrodriguezsandoval/Proyectos/Costumers/Idevart/google/open_cargo_app/android/app/.cxx/Debug/1nl324a5/armeabi-v7a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/urielrodriguezsandoval/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/urielrodriguezsandoval/Proyectos/Costumers/Idevart/google/open_cargo_app/android/app/.cxx/Debug/1nl324a5/armeabi-v7a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}

@@ -8,6 +8,7 @@ class LoginController extends GetxController {
   var email = ''.obs;
   var password = ''.obs;
   var isLoading = false.obs;
+  var obscurePassword = true.obs;
 
   final LoginService loginService = LoginService();
 
@@ -19,32 +20,7 @@ class LoginController extends GetxController {
 
       if (loginResponse != null && loginResponse.accessToken.isNotEmpty) {
         Get.snackbar('Success', 'Welcome ${loginResponse.user.name}');
-        GetStorage().write('token', loginResponse.accessToken);
-        GetStorage().write('id', loginResponse.user.id.toString());
-        GetStorage().write('rol', loginResponse.user.rol);
-        GetStorage().write('nombre', loginResponse.user.rol);
-        GetStorage().write('correo', loginResponse.user.rol);
-        GetStorage().write('imagen', loginResponse.user.imagen);
-        GetStorage()
-            .write('token_notificacion', loginResponse.user.token_notificacion);
-        // Guardar datos del usuario en GetStorage
-        GetStorage().write('user', {
-          'id': loginResponse.user.id,
-          'name': loginResponse.user.name,
-          'email': loginResponse.user.email,
-        });
-        final String? role = GetStorage().read('rol');
-
-        String redirectRoute = AppRoutes.tabs; // Asegurar que siempre va a Tabs
-        if (role == "agencia") {
-          redirectRoute = AppRoutes.tabs;
-        } else if (role == "transporte") {
-          redirectRoute = AppRoutes.tabs;
-        } else if (role == "publico") {
-          redirectRoute = AppRoutes.tabs;
-        }
-
-        Get.offAllNamed(redirectRoute);
+        Get.offAllNamed(AppRoutes.tabs);
       } else {
         Get.snackbar('Error', 'Invalid credentials');
       }

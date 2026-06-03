@@ -16,7 +16,8 @@
     <application
         android:label="Open Cargo"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:enableOnBackInvokedCallback="true">
   <provider
         android:name="androidx.core.content.FileProvider"
         android:authorities="${applicationId}.flutter_downloader.provider"

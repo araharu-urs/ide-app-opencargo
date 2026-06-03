@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(flutter emulators *)",
+      "Skill(memory-update)",
+      "mcp__claude_ai_Linear__list_teams",
+      "mcp__claude_ai_Linear__list_projects",
+      "mcp__claude_ai_Linear__save_project",
+      "mcp__claude_ai_Linear__save_issue",
+      "mcp__claude_ai_Linear__save_comment",
+      "mcp__claude_ai_Linear__get_project",
+      "mcp__claude_ai_Linear__get_issue"
+    ]
+  }
+}

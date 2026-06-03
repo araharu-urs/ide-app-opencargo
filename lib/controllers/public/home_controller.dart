@@ -30,16 +30,16 @@ class HomeController extends GetxController {
   final box = GetStorage();
   @override
   void onInit() {
-    final String? id = box.read('id');
-
-  
-      fetchRoles();
-      fetchUsers();
-    
     super.onInit();
-
-    _getCurrentLocation();
+    fetchRoles();
+    fetchUsers();
     ever(searchQuery, (_) => filterUsers());
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+    _getCurrentLocation();
   }
 
   Future<void> fetchRoles() async {
@@ -138,9 +138,15 @@ class HomeController extends GetxController {
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
 
-      // Actualizar la posición con la ubicación real
       currentPosition.value = LatLng(position.latitude, position.longitude);
-      mapController.move(currentPosition.value, 15.0); // Centrar mapa
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        try {
+          mapController.move(currentPosition.value, 15.0);
+        } catch (_) {
+          // Map widget not mounted yet — currentPosition already updated,
+          // the map will center correctly via initialCenter on next render.
+        }
+      });
 
       print("📍 Ubicación actual: ${currentPosition.value}");
     } catch (e) {

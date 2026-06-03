@@ -7,7 +7,6 @@ import 'package:http/http.dart' as http;
 import 'package:open_cargo/models/user/user_model.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:open_cargo/widgets/exceptions/error_modal.dart';
 
 class UserService extends GetConnect {
   final box = GetStorage();
@@ -24,14 +23,10 @@ class UserService extends GetConnect {
       );
 
       if (response.statusCode == 200) {
-        final List<UserModel> users = UserModel.fromJsonList(response.body);
-        return users;
-      } else {
-        ErrorModal.show(Get.context!, response.bodyString.toString());
-        return null;
+        return UserModel.fromJsonList(response.body);
       }
-    } catch (e) {
-      ErrorModal.show(Get.context!, e.toString());
+      return null;
+    } catch (_) {
       return null;
     }
   }
@@ -49,12 +44,9 @@ class UserService extends GetConnect {
 
       if (response.statusCode == 200) {
         return RolModel.fromJsonList(response.body);
-      } else {
-        ErrorModal.show(Get.context!, response.bodyString.toString());
-        return null;
       }
-    } catch (e) {
-      ErrorModal.show(Get.context!, e.toString());
+      return null;
+    } catch (_) {
       return null;
     }
   }

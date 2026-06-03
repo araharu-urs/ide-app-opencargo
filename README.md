@@ -32,20 +32,146 @@ Aplicación móvil de gestión logística y transporte construida con **Flutter*
 
 ---
 
+## Correr la app en un teléfono Android
+
+Sigue estos pasos en orden para ejecutar la app en un dispositivo físico.
+
+**1. Habilitar opciones de desarrollador en el teléfono**
+
+En el teléfono: `Ajustes → Acerca del teléfono → Número de compilación` (toca 7 veces) → activa **Depuración USB** en `Opciones de desarrollador`.
+
+**2. Conectar el teléfono y verificar que sea detectado**
+
+```bash
+adb devices
+```
+
+Debe aparecer el dispositivo con estado `device`. Si aparece `unauthorized`, acepta el aviso en el teléfono.
+
+**3. Instalar dependencias del proyecto**
+
+```bash
+flutter pub get
+```
+
+**4. Verificar que Flutter detecta el teléfono**
+
+```bash
+flutter devices
+```
+
+Copia el `device-id` del teléfono (ej. `RF8N12345AB`).
+
+**5. Correr la app en el teléfono**
+
+```bash
+flutter run -d <device-id>
+```
+
+O si solo tienes un dispositivo conectado:
+
+```bash
+flutter run
+```
+
+La app se instala y abre automáticamente. En la terminal puedes usar:
+- `r` → hot reload (aplica cambios de UI al instante)
+- `R` → hot restart (reinicia la app)
+- `q` → salir
+
+---
+
+**Alternativa: correr en emulador (Pixel 9 Pro)**
+
+El proyecto tiene configurado el emulador **Pixel 9 Pro**. Para usarlo:
+
+```bash
+# 1. Listar emuladores disponibles
+flutter emulators
+
+# 2. Iniciar el emulador Pixel 9 Pro
+flutter emulators --launch Pixel_9_Pro
+
+# 3. Correr la app en él
+flutter run -d Pixel_9_Pro
+```
+
+Si el emulador ya está abierto, basta con:
+
+```bash
+flutter run
+```
+
+---
+
+**Alternativa: instalar el APK directamente**
+
+Si solo quieres instalar sin correr desde la terminal:
+
+```bash
+# 1. Compilar el APK
+flutter build apk --debug
+
+# 2. Instalarlo en el teléfono
+adb install build/app/outputs/flutter-apk/app-debug.apk
+```
+
+---
+
 ## Comandos de compilación
 
 | Plataforma | Comando | Notas |
 |---|---|---|
 | **Android (APK debug)** | `flutter build apk --debug` | APK firmado con debug |
 | **Android (APK release)** | `flutter build apk --release` | Requiere keystore configurado |
+| **Android (APKs por ABI)** | `flutter build apk --split-per-abi --release` | Genera APK por arquitectura (arm64, x86_64…) |
 | **Android (AppBundle)** | `flutter build appbundle` | Para Play Store |
-| **iOS (debug)** | `flutter build ios --debug` | Solo simuador |
+| **iOS (simulador)** | `flutter build ios --debug --simulator` | Solo simulador, no requiere firma |
 | **iOS (release)** | `flutter build ios --release` | Requiere Apple Developer |
 | **iOS (Archive)** | `flutter build ios --release --no-codesign` | Para TestFlight/App Store |
-| **Web** | `flutter build web` | |
+| **Web** | `flutter build web` | Salida en `build/web/` |
 | **Linux** | `flutter build linux` | |
 | **macOS** | `flutter build macos` | |
 | **Windows** | `flutter build windows` | |
+
+### Comandos de desarrollo
+
+| Acción | Comando |
+|---|---|
+| Listar dispositivos disponibles | `flutter devices` |
+| Ejecutar en debug (dispositivo por defecto) | `flutter run` |
+| Ejecutar en dispositivo específico | `flutter run -d <device-id>` |
+| Ejecutar en modo release | `flutter run --release` |
+| Hot restart | `R` (en la terminal con app corriendo) |
+| Hot reload | `r` (en la terminal con app corriendo) |
+
+### Comandos Android (Gradle)
+
+Ejecutar desde `android/` o con `./gradlew` desde la raíz del módulo Android:
+
+| Acción | Comando |
+|---|---|
+| Build APK debug | `./gradlew assembleDebug` |
+| Build APK release | `./gradlew assembleRelease` |
+| Build AAB release (Play Store) | `./gradlew bundleRelease` |
+| Limpiar build | `./gradlew clean` |
+| Listar todas las tareas disponibles | `./gradlew tasks` |
+| Ver árbol de dependencias | `./gradlew :app:dependencies` |
+| Verificar configuración de firma | `./gradlew signingReport` |
+
+> Los APKs se generan en `build/app/outputs/flutter-apk/` y el AAB en `build/app/outputs/bundle/release/`.
+
+### Comandos ADB (Android Debug Bridge)
+
+| Acción | Comando |
+|---|---|
+| Listar dispositivos conectados | `adb devices` |
+| Instalar APK en dispositivo | `adb install build/app/outputs/flutter-apk/app-release.apk` |
+| Reinstalar conservando datos | `adb install -r build/app/outputs/flutter-apk/app-release.apk` |
+| Desinstalar la app | `adb uninstall xrom.programers.open_cargo` |
+| Ver logs de la app en tiempo real | `adb logcat -s flutter` |
+| Limpiar logs | `adb logcat -c` |
+| Abrir shell en el dispositivo | `adb shell` |
 
 ### Comandos útiles
 
@@ -53,9 +179,11 @@ Aplicación móvil de gestión logística y transporte construida con **Flutter*
 |---|---|
 | Limpiar builds | `flutter clean` |
 | Obtener paquetes | `flutter pub get` |
+| Actualizar paquetes | `flutter pub upgrade` |
 | Analizar código | `flutter analyze` |
 | Ejecutar tests | `flutter test` |
-| Generar icono app | `flutter pub run flutter_launcher_icons` |
+| Generar icono app | `dart run flutter_launcher_icons` |
+| Ver versión de Flutter | `flutter --version` |
 
 ---
 
