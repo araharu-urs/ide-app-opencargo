@@ -16,6 +16,9 @@ class AppTranslations extends Translations {
           // Login
           'login_successful': 'Login successful',
           'invalid_credentials': 'Invalid credentials',
+          'welcome_back': 'Welcome back',
+          'enter_credentials': 'Enter your credentials to continue',
+          'Skip for now': 'Skip for now',
 
           // Reset Password
           'reset_password': 'Reset Password',
@@ -37,6 +40,10 @@ class AppTranslations extends Translations {
           'company_name': 'Company Name',
           'rfc': 'RFC',
           'register_button': 'Register',
+          'create_account': 'Create your account',
+          'fill_your_details': 'Fill in your details to get started',
+          'already_have_account': 'Already have an account?',
+          'sign_in': 'Sign In',
 
           //SEGURIDAD
           'security': 'Seguridad',
@@ -209,6 +216,9 @@ class AppTranslations extends Translations {
           // Login
           'login_successful': 'Inicio de sesión exitoso',
           'invalid_credentials': 'Credenciales incorrectas',
+          'welcome_back': 'Bienvenido de nuevo',
+          'enter_credentials': 'Ingresa tus credenciales para continuar',
+          'Skip for now': 'Omitir por ahora',
 
           // Reset Password
           'reset_password': 'Restablecer Contraseña',
@@ -230,6 +240,10 @@ class AppTranslations extends Translations {
           'company_name': 'Nombre de la Empresa',
           'rfc': 'RFC',
           'register_button': 'Registrarse',
+          'create_account': 'Crea tu cuenta',
+          'fill_your_details': 'Completa tus datos para comenzar',
+          'already_have_account': '¿Ya tienes una cuenta?',
+          'sign_in': 'Iniciar sesión',
 
           //SEGURIDAD
           'security': 'Security',

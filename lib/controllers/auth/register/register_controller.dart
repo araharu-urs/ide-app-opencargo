@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:open_cargo/models/user/roles_model.dart';
-import 'package:open_cargo/services/auth/auth_service.dart';
 import 'package:open_cargo/services/auth/registro/registro_service.dart';
 import 'package:open_cargo/services/users/users_service.dart';
 import 'package:open_cargo/widgets/exceptions/error_modal.dart';
@@ -24,8 +23,10 @@ class RegisterController extends GetxController {
     fetchRoles();
   }
 
-  var isLoading = false.obs; // Para manejar el estado de carga
+  var isLoading = false.obs;
   var selectedProfile = "".obs;
+  var obscurePassword = true.obs;
+  var obscureConfirm = true.obs;
   final UserService _userService = UserService();
 
   RxList<Map<String, dynamic>> profiles = <Map<String, dynamic>>[].obs;
@@ -74,7 +75,6 @@ class RegisterController extends GetxController {
     final password = passwordController.text.trim();
     final confirmPassword = confirmPasswordController.text.trim();
     final roleId = selectedProfileId.value;
-    print(roleId);
     if (name.isEmpty ||
         email.isEmpty ||
         password.isEmpty ||

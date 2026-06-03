@@ -9,7 +9,10 @@
       "mcp__claude_ai_Linear__save_issue",
       "mcp__claude_ai_Linear__save_comment",
       "mcp__claude_ai_Linear__get_project",
-      "mcp__claude_ai_Linear__get_issue"
+      "mcp__claude_ai_Linear__get_issue",
+      "Bash(xargs cat)",
+      "mcp__claude_ai_Linear__list_issues",
+      "Bash(flutter analyze *)"
     ]
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:open_cargo/constantes.dart';
-import 'package:open_cargo/widgets/exceptions/error_modal.dart';
 import '../../../../controllers/auth/login/login_controller.dart';
 
 class LoginForm extends StatelessWidget {
@@ -10,7 +9,7 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final LoginController controller = Get.find<LoginController>();
-    final fillColor = Get.isDarkMode ? Colors.grey[800]! : Colors.grey[50]!;
+    final fillColor = Get.isDarkMode ? Colors.grey[800]! : Colors.grey[200]!;
     final inputBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
       borderSide: BorderSide.none,
@@ -145,13 +144,7 @@ class LoginForm extends StatelessWidget {
         // Skip for now
         Center(
           child: TextButton(
-            onPressed: () async {
-              try {
-                await Get.toNamed('/tabs');
-              } catch (e) {
-                ErrorModal.show(context, e.toString());
-              }
-            },
+            onPressed: () => Get.toNamed('/tabs'),
             child: Text(
               'Skip for now'.tr,
               style: TextStyle(

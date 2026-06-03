@@ -4,7 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import '../routes/app_routes.dart';
 
 class RoleMiddleware extends GetMiddleware {
- @override
+  @override
   RouteSettings? redirect(String? route) {
     final box = GetStorage();
     final String? token = box.read('token');
@@ -18,20 +18,20 @@ class RoleMiddleware extends GetMiddleware {
       return const RouteSettings(name: AppRoutes.login);
     }
 
-    // Definir rutas permitidas según rol
+    final normalizedRole = role.toLowerCase().trim();
+
     final Map<String, List<String>> roleRoutes = {
-      "Agencia": [AppRoutes.tabs,AppRoutes.home, AppRoutes.agencia],
-      "Transporte": [AppRoutes.tabs,AppRoutes.home, AppRoutes.transporte],
-      "Publico": [AppRoutes.tabs,AppRoutes.home,  AppRoutes.publico],
+      "agencia":    [AppRoutes.tabs, AppRoutes.home, AppRoutes.agencia],
+      "transporte": [AppRoutes.tabs, AppRoutes.home, AppRoutes.transporte],
+      "publico":    [AppRoutes.tabs, AppRoutes.home, AppRoutes.publico],
     };
 
-    if (!roleRoutes.containsKey(role)) {
+    if (!roleRoutes.containsKey(normalizedRole)) {
       return const RouteSettings(name: AppRoutes.login);
     }
 
-    // Si el usuario intenta acceder a una ruta no permitida, enviarlo a la principal de su rol
-    if (route != null && !roleRoutes[role]!.contains(route)) {
-      return RouteSettings(name: roleRoutes[role]!.first);
+    if (route != null && !roleRoutes[normalizedRole]!.contains(route)) {
+      return RouteSettings(name: roleRoutes[normalizedRole]!.first);
     }
 
     return null;
